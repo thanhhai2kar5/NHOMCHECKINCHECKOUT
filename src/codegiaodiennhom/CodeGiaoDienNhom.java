@@ -12,7 +12,7 @@ public class CodeGiaoDienNhom extends JFrame {
     private JButton confirmButton, clearButton;
 
     public CodeGiaoDienNhom() {
-        setTitle("Chương trình nhóm");
+        setTitle("Chương trình nhóm: ");
         setSize(400, 250);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
