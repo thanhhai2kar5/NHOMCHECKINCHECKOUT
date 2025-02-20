@@ -1,47 +1,73 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package codegiaodiennhom;
 
-/**
- *
- * @author pc
- */
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class CodeGiaoDienNhom extends JFrame {
     private JTextField textField;
-    private JLabel resultLabel;
+    private JLabel resultLabel, timeLabel;
+    private JButton confirmButton, clearButton;
 
     public CodeGiaoDienNhom() {
         setTitle("Chương trình nhóm");
-        setSize(400, 200);
+        setSize(400, 250);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        setLayout(new GridLayout(3, 1, 10, 10));
+        setLayout(new BorderLayout(10, 10));
 
         // Tiêu đề
         JLabel titleLabel = new JLabel("Nhập thông tin", SwingConstants.CENTER);
-        add(titleLabel);
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 18));
+        titleLabel.setForeground(Color.BLUE);
+        add(titleLabel, BorderLayout.NORTH);
 
-        // Ô nhập thông tin
+        // Panel nhập thông tin
+        JPanel inputPanel = new JPanel(new GridLayout(2, 1, 5, 5));
         textField = new JTextField();
-        add(textField);
+        inputPanel.add(textField);
 
-        // Nút xác nhận
-        JButton confirmButton = new JButton("Hiển thị");
-        add(confirmButton);
+        // Nhãn hiển thị thời gian nhập liệu
+        timeLabel = new JLabel("", SwingConstants.CENTER);
+        inputPanel.add(timeLabel);
+        add(inputPanel, BorderLayout.CENTER);
+
+        // Panel nút bấm
+        JPanel buttonPanel = new JPanel();
+        confirmButton = new JButton("Hiển thị");
+        clearButton = new JButton("Xóa");
+
+        // Định dạng màu sắc cho nút
+        confirmButton.setBackground(Color.GREEN);
+        clearButton.setBackground(Color.RED);
+        confirmButton.setForeground(Color.WHITE);
+        clearButton.setForeground(Color.WHITE);
+
+        buttonPanel.add(confirmButton);
+        buttonPanel.add(clearButton);
+        add(buttonPanel, BorderLayout.SOUTH);
 
         // Nhãn hiển thị kết quả
         resultLabel = new JLabel("", SwingConstants.CENTER);
-        add(resultLabel);
+        resultLabel.setFont(new Font("Arial", Font.ITALIC, 14));
+        resultLabel.setForeground(Color.DARK_GRAY);
+        add(resultLabel, BorderLayout.SOUTH);
 
-        // Sự kiện khi nhấn nút
+        // Sự kiện khi nhấn nút "Hiển thị"
         confirmButton.addActionListener(e -> {
             String inputText = textField.getText();
+            String timeStamp = new SimpleDateFormat("HH:mm:ss").format(new Date());
+            timeLabel.setText("Thời gian nhập: " + timeStamp);
             resultLabel.setText("Bạn đã nhập: " + inputText);
+        });
+
+        // Sự kiện khi nhấn nút "Xóa"
+        clearButton.addActionListener(e -> {
+            textField.setText("");
+            resultLabel.setText("");
+            timeLabel.setText("");
         });
 
         setVisible(true);
@@ -49,6 +75,10 @@ public class CodeGiaoDienNhom extends JFrame {
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(CodeGiaoDienNhom::new);
+    }
+}
+
+        
     }
 }
 
