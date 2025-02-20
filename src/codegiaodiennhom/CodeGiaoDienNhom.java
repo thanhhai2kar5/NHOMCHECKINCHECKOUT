@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class CodeGiaoDienNhom extends JFrame {
+
     private JTextField textField;
     private JLabel resultLabel;
     private DefaultListModel<String> listModel;
@@ -32,7 +33,11 @@ public class CodeGiaoDienNhom extends JFrame {
         // Panel chứa các nút chức năng
         JPanel buttonPanel = new JPanel(new GridLayout(1, 3, 10, 10));
         JButton addButton = new JButton("Thêm"); // Việt Anh
+        JButton editButton = new JButton("Sửa"); // Hiếu
+
         buttonPanel.add(addButton);
+        buttonPanel.add(editButton);
+
         add(buttonPanel, BorderLayout.SOUTH);
         // Chức năng Thêm - Việt Anh
         addButton.addActionListener(e -> {
@@ -42,7 +47,20 @@ public class CodeGiaoDienNhom extends JFrame {
                 textField.setText("");
             }
         });
+        
+          // Chức năng Sửa - Hiếu
+        editButton.addActionListener(e -> {
+            int selectedIndex = displayList.getSelectedIndex();
+            if (selectedIndex != -1) {
+                String newText = textField.getText().trim();
+                if (!newText.isEmpty()) {
+                    listModel.set(selectedIndex, newText);
+                    textField.setText("");
+                }
+            }
+        });
     }
+
     public static void main(String[] args) {
         SwingUtilities.invokeLater(CodeGiaoDienNhom::new);
     }
