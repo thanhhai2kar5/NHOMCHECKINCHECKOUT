@@ -19,7 +19,7 @@ public class CodeGiaoDienNhom extends JFrame {
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
         // Panel nhập dữ liệu
-        // Cập nhật chức năng Thêm và Xóa
+        // Cập nhật chức năng Thêm
         JPanel inputPanel = new JPanel(new GridLayout(2, 1, 10, 10));
         JLabel titleLabel = new JLabel("Nhập thông tin ", SwingConstants.CENTER);
         textField = new JTextField();
@@ -33,9 +33,11 @@ public class CodeGiaoDienNhom extends JFrame {
         // Panel chứa các nút chức năng
         JPanel buttonPanel = new JPanel(new GridLayout(1, 3, 10, 10));
         JButton addButton = new JButton("Thêm"); // Việt Anh
-        JButton deleteButton = new JButton("Xóa"); // Khánh
+        JButton editButton = new JButton("Sửa"); // Hiếu
+
         buttonPanel.add(addButton);
-        buttonPanel.add(deleteButton);
+        buttonPanel.add(editButton);
+
         add(buttonPanel, BorderLayout.SOUTH);
         // Chức năng Thêm - Việt Anh
         addButton.addActionListener(e -> {
@@ -45,15 +47,18 @@ public class CodeGiaoDienNhom extends JFrame {
                 textField.setText("");
             }
         });
-        // Chức năng Xóa - Khánh
-        deleteButton.addActionListener(e -> {
+        
+          // Chức năng Sửa - Hiếu
+        editButton.addActionListener(e -> {
             int selectedIndex = displayList.getSelectedIndex();
             if (selectedIndex != -1) {
-                listModel.remove(selectedIndex);
+                String newText = textField.getText().trim();
+                if (!newText.isEmpty()) {
+                    listModel.set(selectedIndex, newText);
+                    textField.setText("");
+                }
             }
         });
-
-        setVisible(true);
     }
 
     public static void main(String[] args) {
