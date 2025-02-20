@@ -34,9 +34,11 @@ public class CodeGiaoDienNhom extends JFrame {
         JPanel buttonPanel = new JPanel(new GridLayout(1, 3, 10, 10));
         JButton addButton = new JButton("Thêm"); // Việt Anh
         JButton editButton = new JButton("Sửa"); // Hiếu
+        JButton deleteButton = new JButton("Xóa"); // Khánh
 
         buttonPanel.add(addButton);
         buttonPanel.add(editButton);
+        buttonPanel.add(deleteButton);
 
         add(buttonPanel, BorderLayout.SOUTH);
         // Chức năng Thêm - Việt Anh
@@ -47,8 +49,8 @@ public class CodeGiaoDienNhom extends JFrame {
                 textField.setText("");
             }
         });
-        
-          // Chức năng Sửa - Hiếu
+
+        // Chức năng Sửa - Hiếu
         editButton.addActionListener(e -> {
             int selectedIndex = displayList.getSelectedIndex();
             if (selectedIndex != -1) {
