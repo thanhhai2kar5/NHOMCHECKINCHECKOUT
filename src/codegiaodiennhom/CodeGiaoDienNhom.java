@@ -19,7 +19,7 @@ public class CodeGiaoDienNhom extends JFrame {
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
         // Panel nhập dữ liệu
-        // Cập nhật chức năng Thêm
+        // Cập nhật chức năng Thêm và Xóa
         JPanel inputPanel = new JPanel(new GridLayout(2, 1, 10, 10));
         JLabel titleLabel = new JLabel("Nhập thông tin ", SwingConstants.CENTER);
         textField = new JTextField();
